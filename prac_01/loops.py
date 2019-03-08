@@ -27,10 +27,13 @@ for i in range(1, user_input+1):
     print('*' * i)
 
 # print a tree
-# for i in range(1, user_input+1):
-#     mid = user_input//2
-#     stars = '*' * (i + (i-1))
-#     spaces = ' ' * mid
-#     end = user_input
-#     # print(' ' * mid, '*' * i,
-#     print(spaces, stars, spaces)
+for i in range(0, user_input+1):
+    mid = user_input
+    stars = "*"*i
+    spaces = " " * (mid - len(stars))
+    # print(spaces, stars + "*" + stars)
+    print("{}".format("*"*i:user_input*2))
+
+for i in range(user_input, 0, -1):
+    mid = user_input
+
