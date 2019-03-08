@@ -20,7 +20,7 @@ print(guitar_data)
 guitar_json = []
 print(guitar_json)
 
-outfile = open('output.jsn', 'w')
+outfile = open('output.json', 'w')
 
 for guitars in guitar_data:
     guitar = {headers[i]:row for i, row in enumerate(guitar)}
