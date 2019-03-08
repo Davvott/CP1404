@@ -23,7 +23,7 @@ print(guitar_json)
 outfile = open('output.json', 'w')
 
 for guitars in guitar_data:
-    guitar = {headers[i]:row for i, row in enumerate(guitar)}
+    guitar = {headers[i]:row for i, row in enumerate(guitars)}
     json.dump(g, outfile, indent=4)
 
 outfile.close()
