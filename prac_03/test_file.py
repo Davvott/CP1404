@@ -7,4 +7,4 @@ while len(pw)< MIN_LEN:
 
 print("*"*len(pw))
 
-#
+# #
