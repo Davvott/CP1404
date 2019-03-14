@@ -8,8 +8,6 @@ Another way to get just consonants would be to use string.ascii_lowercase
 import random
 import string
 
-
-
 MENU = """Welcome to Scrabble Helper:
 AUTOMATIC --->
     Press 'Enter' for a random word!
