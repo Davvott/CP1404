@@ -6,3 +6,5 @@ while len(pw)< MIN_LEN:
     pw = input("Enter your password: ")
 
 print("*"*len(pw))
+
+#
