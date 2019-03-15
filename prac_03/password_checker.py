@@ -2,7 +2,6 @@ MIN_LEN = 4
 
 def main():
     pw = get_password()
-
     print_password(pw)
 
 
