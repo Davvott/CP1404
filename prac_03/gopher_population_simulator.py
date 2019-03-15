@@ -28,21 +28,28 @@ Population: 847
 import random
 
 PERIOD = 10
+BIRTH_RANGE = [.1, .21]
+DEATHS_RANGE = [.05, .25]
 
 
 def main():
     population = 1000
     print("Welcome to the Gopher Population Simulator!")
     print("Starting population: {}".format(population))
-    for y in range(1, PERIOD):
-        born = round(random.uniform(.1, .21) * population)
-        deaths = round(random.uniform(.5, .25) * population)
-        population += born
-        population -= deaths
 
-        print("{} gophers were born. {} died.".format(born, deaths))
+    for y in range(1, PERIOD):
+        births, deaths = calc_pop_change(population)
+        population += (births - deaths)
+
+        print("{} gophers were born. {} died.".format(births, deaths))
         print("Population: {}".format(population))
         print("Year {}\n".format(y))
+
+
+def calc_pop_change(population):
+    born = round(random.uniform(BIRTH_RANGE[0], BIRTH_RANGE[1]) * population)
+    deaths = round(random.uniform(DEATHS_RANGE[0], DEATHS_RANGE[1]) * population)
+    return born, deaths
 
 
 main()
