@@ -25,6 +25,7 @@ Year 3
 138 gophers were born. 180 died.
 Population: 847
 """
+
 import random
 
 PERIOD = 10
