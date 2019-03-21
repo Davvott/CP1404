@@ -18,6 +18,9 @@ def main():
 
 
 def get_number():
+    """Get and validate user input for a bounded number. Loops until true.
+    ***Uses GLOBAL BOUNDS***
+    """
     valid_input = False
     while not valid_input:
         try:

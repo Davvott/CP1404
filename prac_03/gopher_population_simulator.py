@@ -48,6 +48,7 @@ def main():
 
 
 def calc_pop_change(population):
+    """Calculate population change, return births and deaths"""
     born = round(random.uniform(BIRTH_RANGE[0], BIRTH_RANGE[1]) * population)
     deaths = round(random.uniform(DEATHS_RANGE[0], DEATHS_RANGE[1]) * population)
     return born, deaths

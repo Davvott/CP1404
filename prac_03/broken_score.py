@@ -11,6 +11,7 @@ def main():
 
 
 def determine_status(score):
+    """Determine validity and type of score"""
     if score < 0:
         return "Invalid score"
     elif score > 100:

@@ -31,12 +31,14 @@ def main():
 
 
 def convert_fahrenheit_to_celsius(fahrenheit):
+    """Convert fahrenheit to celsius from parameter"""
     celsius = 5 / 9 * (fahrenheit - 32)
     return celsius
     # return "Result: {:.2f} C".format(celsius)
 
 
 def convert_celsius_to_fahrenheit(celsius):
+    """Convert celsius to fahrenheit from parameter"""
     fahrenheit = celsius * 9.0 / 5 + 32
     return fahrenheit
     # return "Result: {:.2f} F".format(fahrenheit)
