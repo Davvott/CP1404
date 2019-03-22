@@ -35,12 +35,12 @@ def main():
 
     subject_dict = {}
     for i in range(len(subjects)):
-        subject_dict[subjects[i]] = []  # Create subject key
+        # subject_dict[subjects[i]] = []  # Create subject key
         subject_scores = []
         print(subjects[i], "Scores:")
 
         for j, score_list in enumerate(student_score_values):
-            subject_dict[subjects[i]].append(score_list[i])
+            # subject_dict[subjects[i]].append(score_list[i])
             subject_scores.append(score_list[i])
             print(score_list[i], end=' ')
 
