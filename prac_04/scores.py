@@ -9,17 +9,13 @@ Nice.
 Except, it’s broken! It reads the lists per user not per subject so the results are incorrect.
 Use the debugger to follow what it's doing... then fix it.
 """
-
-
+from pprint import pprint
 
 
 def main():
     """Read and display student scores from scores file."""
     scores_file = open("scores.csv")
-
     scores_data = scores_file.readlines()
-    print(scores_data)
-
     subjects = scores_data[0].strip().split(",")
 
     student_score_values = []
@@ -29,29 +25,66 @@ def main():
         score_numbers = [int(value) for value in score_strings]
         student_score_values.append(score_numbers)
 
-        # FOr subjects[i], append score_num[i];
-
     scores_file.close()
 
-    subject_dict = {}
-    for i in range(len(subjects)):
-        # subject_dict[subjects[i]] = []  # Create subject key
-        subject_scores = []
-        print(subjects[i], "Scores:")
+    subject_dict = arrange_scores_by_subject(student_score_values, subjects)
 
-        for j, score_list in enumerate(student_score_values):
-            # subject_dict[subjects[i]].append(score_list[i])
-            subject_scores.append(score_list[i])
-            print(score_list[i], end=' ')
+    display_score_table(subject_dict)
+    display_simple_min_max_avg(subject_dict)
+    # basic_print_scores(student_score_values, subject_dict)
 
-        print("\nMax: ", max(subject_scores),
-              "\nMin: ", min(subject_scores),
-              "\nAvg: ", sum(subject_scores)/len(subject_scores))
+
+def display_score_table(subject_dict):
+    """Prints table from dict values with dict keys as headers"""
+    subjects = [key for key in subject_dict.keys()]
+
+    for key in subject_dict.keys():
+        print("{:>10}".format(key), end='')
+    print()
+    for i in range(len(subject_dict[subjects[0]])):
+        for j in range(len(subjects)):
+            print("{:>10}".format(subject_dict[subjects[j]][i]), end='')
         print()
 
-    print(subject_dict)
 
-    # TODO: pretty print table from data
+def display_simple_min_max_avg(subject_dict):
+    """Print Min Max Avg from dict of scores"""
+    subjects = [key for key in subject_dict.keys()]
+    print("\nMax", end='')
+    for i in range(len(subjects)):
+        print("{:>7}   ".format(max(subject_dict[subjects[i]])), end='')
+
+    print("\nMin", end='')
+    for i in range(len(subjects)):
+        print("{:>7}   ".format(min(subject_dict[subjects[i]])), end='')
+
+    print("\nAvg", end='')
+    for i in range(len(subjects)):
+        print("{:>7}   ".format(sum(subject_dict[subjects[i]]) /
+              len(subject_dict[subjects[i]])), end='')
+
+
+def basic_print_scores(student_score_values, subject_dict):
+    for i, key in enumerate(subject_dict.keys()):
+        print(key, "Scores:")
+
+        for score_list in student_score_values:
+            print(score_list[i], end=' ')
+
+        print("\nMax: ", max(subject_dict[key]),
+              "\nMin: ", min(subject_dict[key]),
+              "\nAvg: ", sum(subject_dict[key]) / len(subject_dict[key]))
+        print()
+
+
+def arrange_scores_by_subject(student_score_values, subjects):
+    """Return list of scores as dict{subject:score_list}"""
+    subject_dict = {}
+    for i in range(len(subjects)):
+        subject_dict[subjects[i]] = []
+        for score_list in student_score_values:
+            subject_dict[subjects[i]].append(score_list[i])
+    return subject_dict
 
 
 main()
