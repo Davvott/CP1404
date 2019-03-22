@@ -10,9 +10,7 @@ Except, it’s broken! It reads the lists per user not per subject so the result
 Use the debugger to follow what it's doing... then fix it.
 """
 
-# TODO: Print the list of (10) scores per subject with the maximum per subject
 
-# TODO: Print minimum and average for each subject, pretty print
 
 
 def main():
@@ -24,25 +22,36 @@ def main():
 
     subjects = scores_data[0].strip().split(",")
 
-    score_values = []
+    student_score_values = []
     # Appends each students' subject score_value
     for student_scores in scores_data[1:]:
         score_strings = student_scores.strip().split(",")
         score_numbers = [int(value) for value in score_strings]
-        score_values.append(score_numbers)
+        student_score_values.append(score_numbers)
+
+        # FOr subjects[i], append score_num[i];
 
     scores_file.close()
 
-    # Prints students subject score_values
+    subject_dict = {}
     for i in range(len(subjects)):
-
+        subject_dict[subjects[i]] = []  # Create subject key
+        subject_scores = []
         print(subjects[i], "Scores:")
 
-        for score in score_values[i]:
-            print(score)
+        for j, score_list in enumerate(student_score_values):
+            subject_dict[subjects[i]].append(score_list[i])
+            subject_scores.append(score_list[i])
+            print(score_list[i], end=' ')
 
-        print("Max:", max(score_values[i]))
+        print("\nMax: ", max(subject_scores),
+              "\nMin: ", min(subject_scores),
+              "\nAvg: ", sum(subject_scores)/len(subject_scores))
         print()
+
+    print(subject_dict)
+
+    # TODO: pretty print table from data
 
 
 main()
