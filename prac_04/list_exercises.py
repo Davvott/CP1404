@@ -1,4 +1,5 @@
 
+
 # Prompt user for 5 integers and store in list
 def main():
     numbers = []
@@ -11,6 +12,22 @@ def main():
     print("The smallest number is {}".format(min(numbers)))
     print("The largest number is {}".format(max(numbers)))
     print("The average of the numbers is {:.2f}".format(sum(numbers) / len(numbers)))
+
+
+main()
+
+
+def main():
+    usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye',
+                 'swei45', 'BaseInterpreterInterface', 'BaseStdIn', 'Command',
+                 'ExecState', 'InteractiveConsole', 'InterpreterInterface',
+                 'StartServer', 'bob']
+    users_name = input("Please enter your username: ")
+    if users_name in usernames:
+        print("Access granted")
+    else:
+        print("Access denied")
+
 
 main()
 
@@ -39,15 +56,7 @@ def main():
     print("The largest number is {}".format(max(numbers)))
     print("The average of the numbers is {:.2f}".format(sum(numbers) / len(numbers)))
 
+
 main()
 
 
-usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye',
-                 'swei45', 'BaseInterpreterInterface', 'BaseStdIn', 'Command',
-                 'ExecState', 'InteractiveConsole', 'InterpreterInterface',
-                 'StartServer', 'bob']
-users_name = input("Please enter your username: ")
-if users_name in usernames:
-    print("Access granted")
-else:
-    print("Access denied")
