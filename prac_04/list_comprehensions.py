@@ -3,10 +3,10 @@ CP1404/CP5632 Practical
 List comprehensions
 """
 
+
 names = ["Bob", "Angel", "Jimi", "Alan", "Ada"]
 full_names = ["Bob Martin", "Angel Harlem", "Jimi Hendrix", "Alan Turing",
               "Ada Lovelace"]
-
 # for loop that creates a new list containing the first letter of each name
 first_initials = []
 for name in names:
@@ -27,14 +27,16 @@ print(full_initials)
 a_names = [name for name in names if name.startswith('A')]
 print(a_names)
 
+# EXTENSION ACTIVITIES
 # in lowercase format
 lowercase_full_names = [name.lower() for name in full_names]
-
+print(lowercase_full_names)
 almost_numbers = ['0', '10', '21', '3', '-7', '88', '9']
 # from the above list of strings
-numbers_from_strings = [int(num_string) for num_string in almost_numbers]
-
+numbers = [int(num_string) for num_string in almost_numbers]
+print(numbers)
 # greater than 9 from the numbers (not strings) you just created
-greater_than_nine = [num for num in numbers_from_strings if num > 9]
+greater_than_nine = [num for num in numbers if num > 9]
+print(greater_than_nine)
 
 # print(lowercase_full_names, '\n', numbers_from_strings, '\n', greater_than_nine)
