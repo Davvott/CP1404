@@ -10,18 +10,29 @@
 
 # Version II
 
-TARIFF_11 = 0.244618
-TARIFF_31 = 0.136928
-print('Welcome to the Electricity bill estimator 2.0')
+TARIFFS = {11: 0.244618, 31: 0.136928}
 
-tariff = int(input("Which tariff? 11 or 31: "))
-if tariff == 11:
-    tariff = TARIFF_11
-else:
-    tariff = TARIFF_31
+print('Welcome to the Electricity bill estimator 2.0')
+for key in TARIFFS:
+    print("Tarriff {} is {} cents per hour".format(key, TARIFFS[key]))
+
+correct_input = False
+
+
+while not correct_input:
+    tariff = -1
+    try:
+        tariff = int(input("Which tariff: "))
+    except ValueError:
+        print("Please enter an integer")
+        continue
+    if tariff not in TARIFFS:
+        print("Tariff not found, try again")
+    else:
+        correct_input = True
 
 daily_use = float(input("Enter daily use in kWh: "))
 billing_days = int(input("Enter number of billing days: "))
 total_bill = (tariff * daily_use) * billing_days
 
-print("Estimated bill: ${:.2f}".format(total_bill))
+print("Estimated bill: ${:,.2f}".format(total_bill))
