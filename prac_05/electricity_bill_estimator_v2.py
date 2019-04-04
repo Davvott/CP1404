@@ -33,6 +33,6 @@ while not correct_input:
 
 daily_use = float(input("Enter daily use in kWh: "))
 billing_days = int(input("Enter number of billing days: "))
-total_bill = (tariff * daily_use) * billing_days
+total_bill = (TARIFFS[tariff] * daily_use) * billing_days
 
 print("Estimated bill: ${:,.2f}".format(total_bill))
