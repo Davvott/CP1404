@@ -1,16 +1,20 @@
 
-COLOURS = {
-    "blue": "#0000ff",
-    "brown": "#a52a2a",
-    "black": "#000000",
-    "yellow": "#ffff00",
-    "white": "#ffffff",
-    "red": "#ff0000",
-    "pink": "#ffc0cb",
-    "purple": "#a020f0",
-    "orange": "#ffa500",
-    "lavender": "#e6e6fa",
-}
+COLOURS = {"aliceblue": "#f0f8ff",
+           "antiquewhite": "#faebd7",
+           "antiquewhite1": "#ffefdb",
+           "antiquewhite2": "#eedfcc",
+           "antiquewhite3": "#cdc0b0",
+           "antiquewhite4": "#8b8378",
+           "aquamarine1": "#7fffd4",
+           "aquamarine2": "#76eec6",
+           "aquamarine4": "#458b74",
+           "azure1": "#f0ffff",
+           "azure2": "#e0eeee",
+           "azure3": "#c1cdcd",
+           "azure4": "#838b8b",
+           "beige": "#f5f5dc",
+           "bisque1": "#ffe4c4",
+           "bisque2": "#eed5b7"}
 
 user_colour = input("Enter the name of a color: ").lower()
 
