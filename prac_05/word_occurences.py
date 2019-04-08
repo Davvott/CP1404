@@ -25,6 +25,7 @@ for key in sort_list:
 # Pretty printing
 max_length_key = max([len(key) for key in word_count])
 
+
 print("Text: a fun collection")
 for key in sort_list:
     print("{:{}} : {}".format(key, max_length_key, word_count[key]))
