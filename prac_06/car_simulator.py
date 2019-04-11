@@ -1,6 +1,5 @@
 from prac_06.car import Car
 
-
 MENU = """
 Menu:
 d) drive
@@ -13,7 +12,6 @@ MENU_OPTIONS = ['d', 'r', 'q']
 def main():
     print("Let's driver!")
 
-
     car_name = input("Enter your car name: ")
     user_car = Car(100, car_name)
     continue_loop = True
@@ -25,10 +23,12 @@ def main():
             drive_car(user_car)
 
         elif menu_choice == MENU_OPTIONS[1]:
-            # call refuel_car
-            pass
+            refuel_car(user_car)
+
         elif menu_choice == MENU_OPTIONS[2]:
-            print("Good bye {}'s driver".format(car_name))
+            print("\nGood bye {}'s driver.".format(car_name))
+            continue_loop = False
+        print()
 
 
 def get_menu_choice():
@@ -38,6 +38,7 @@ def get_menu_choice():
         choice = input(MENU).lower()
     return choice
 
+
 def get_postitive_int(unit, prompt):
     while True:
         try:
@@ -46,7 +47,8 @@ def get_postitive_int(unit, prompt):
                 return value
         except ValueError:
             pass
-        print("{} must be >= 0")
+        print("{} must be >= 0".format(unit))
+
 
 def drive_car(car):
     prompt = "How many km do you wish to drive? "
@@ -54,8 +56,16 @@ def drive_car(car):
     actual_distance = car.drive(distance)
     print("The care drove {}km".format(actual_distance), end='')
     if car.fuel == 0:
-        print("and ran out of fuel.")
+        print(" and ran out of fuel.")
     else:
         print(".")
+
+
+def refuel_car(car):
+    prompt = "How many units of fuel do you want to add to the car? "
+    fuel = get_postitive_int("Fuel amount", prompt)
+    car.add_fuel(fuel)
+    print("Added {} units of fuel.".format(fuel))
+
 
 main()
