@@ -58,3 +58,4 @@ def drive_car(car):
     else:
         print(".")
 
+main()
