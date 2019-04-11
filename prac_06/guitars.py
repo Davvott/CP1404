@@ -12,8 +12,8 @@ class Guitar:
         return "{} ({}) : ${:,.2f}".format(self.name, self.year, self.cost)
 
     def get_age(self):
-        today = datetime.today().year
-        return today - self.year
+        this_year = datetime.today().year
+        return this_year - self.year
 
     def is_vintage(self):
         age = self.get_age()
@@ -44,13 +44,16 @@ def main():
             guitar_cost = float(input("Please enter the Cost: "))
 
             guitars.append(Guitar(guitar_name, guitar_year, guitar_cost))
+
+    # Print list
     if guitars:
         print("These are my guitars:")
+
         for i, guitar in enumerate(guitars, 1):
             vintage = "(vintage)" if guitar.is_vintage() else ""
-            print("Guitar {}: ".format(i), end='')
-            print("{:>20} ({}), worth ${:10,.2f} {}".format(
-                guitar.name, guitar.year, guitar.cost, vintage))
+
+            print("Guitar {}: {:>20} ({}), worth ${:10,.2f} {}".format(
+                i, guitar.name, guitar.year, guitar.cost, vintage))
 
 
 main()
