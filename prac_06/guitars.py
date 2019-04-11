@@ -12,23 +12,24 @@ class Guitar:
         return "{} ({}) : ${:,.2f}".format(self.name, self.year, self.cost)
 
     def get_age(self):
-        return 2019 - self.year
+        today = datetime.today().year
+        return today - self.year
 
     def is_vintage(self):
         age = self.get_age()
         return age > 50
 
 
-name = "Gibson L-5 CES"
-year = 1922
-cost = 16035.40
-print("My guitar: {0}, first made in {1}".format(name, year))
+# name = "Gibson L-5 CES"
+# year = 1922
+# cost = 16035.40
+# print("My guitar: {0}, first made in {1}".format(name, year))
 
 
 def main():
     print("My guitars!")
     continue_loop = False
-    guitars = []
+    guitars = list()
 
     guitars.append(Guitar("Gibson L-5 CES", 1922, 16035.40))
     guitars.append(Guitar("Line 6 JTV-59", 2010, 1512.9))
@@ -50,5 +51,6 @@ def main():
             print("Guitar {}: ".format(i), end='')
             print("{:>20} ({}), worth ${:10,.2f} {}".format(
                 guitar.name, guitar.year, guitar.cost, vintage))
+
 
 main()
