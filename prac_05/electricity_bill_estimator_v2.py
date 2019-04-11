@@ -20,12 +20,13 @@ correct_input = False
 
 
 while not correct_input:
-    tariff = -1
+
     try:
         tariff = int(input("Which tariff: "))
     except ValueError:
         print("Please enter an integer")
         continue
+
     if tariff not in TARIFFS:
         print("Tariff not found, try again")
     else:
