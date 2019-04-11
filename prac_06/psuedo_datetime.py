@@ -34,6 +34,21 @@ class DateTime:
         print("{}/{}/{}".format(self.day, self.month, self.year))
 
     def add_days(self, n):
+        """30 day month always followed by 31 day month"""
+        self.day += n
+        thirty_months = [2, 4, 6, 9, 11]
+        if self.month in thirty_months and self.day > 30:
+            self.day -=30
+            self.month += 1
+
+        if self.day > 31 and self.month not in thirty_months:
+            self.day -= 31
+            self.month += 1
+
+        if self.month > 12:
+            self.month = 1
+            self.year += 1
+
         pass
 
 
