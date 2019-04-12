@@ -1,0 +1,41 @@
+
+BoxLayout:
+    # Outer frame
+    orientation: 'vertical'
+
+    BoxLayout:
+        # 1st row
+        orientation: 'horizontal'
+        # Text input
+        TextInput:
+            id: text_input
+            text: "0"
+            on_text: app.handle_convert_units()
+            color: (0, 0, 0, 1)
+            multiline: False
+        # Frame for stacked buttons
+        BoxLayout:
+            orientation: 'vertical'
+            # Button 1
+            Button:
+                text: 'Up'
+                on_press: app.handle_increment(1)
+            # Button 2
+            Button:
+                text: 'Down'
+                on_press: app.handle_increment(-1)
+
+    # Next Row
+#    Button:
+#        text: 'Convert miles to kms'
+#        on_press: app.handle_convert_units()
+    Label:
+        canvas:
+            Color:
+                rgba: 128, 128, 128, 0.2
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        id: display_text
+        text: app.output_text
+        color: (1, 1, 0, 1)
