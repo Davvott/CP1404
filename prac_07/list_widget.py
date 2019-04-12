@@ -35,4 +35,13 @@ class DynamicListApp(App):
             # temp_label.bind(on_release=self.press_entry)
             self.root.ids.list_box.add_widget(temp_label)
 
+    def clear_all(self):
+        self.root.ids.list_box.clear_widgets()
+
+    def add_widget(self):
+        self.strings.append(self.root.ids.text_input.text)
+        self.root.ids.text_input.text = ""
+        self.create_widgets()
+        pass
+
 DynamicListApp().run()
