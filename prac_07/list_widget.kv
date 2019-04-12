@@ -1,0 +1,25 @@
+BoxLayout:
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgba: (0, 0, 0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        # this layout is populated with Button widgets in app code
+        id: list_box
+    Label:
+        size_hint_y: 0.1
+        text: "Placeholder"
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.2
+
+#        Button:
+#            text: "Create Widgets"
+#            on_release: app.create_widgets()
+#        Button:
+#            text: "Clear Widgets"
+#            on_release: app.clear_all()
