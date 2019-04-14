@@ -1,9 +1,13 @@
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.lang import Builder
+from kivy.properties import StringProperty
 # from kivy.uix.boxlayout import BoxLayout
 
+
 class TemperatureConverter(App):
+
+    display_text = StringProperty()
 
     def build(self):
         Window.size = (500, 500)
@@ -33,7 +37,7 @@ class TemperatureConverter(App):
         if self.validate_text_input():
             fahrenheit = int(self.root.ids.text_input.text)
             celsius = self.convert_fahrenheit_to_celsius(fahrenheit)
-            self.root.ids.output_display.text = "{:.2f}".format(celsius)
+            self.display_text = "{:.2f}".format(celsius)
 
     def validate_text_input(self):
         try:

@@ -13,6 +13,7 @@ BoxLayout:
             id: text_input
             text: '0'
             font_size: 40
+            multiline: False
             on_text: app.handle_conversion()
 
         BoxLayout:
@@ -30,5 +31,6 @@ BoxLayout:
         on_press: app.handle_conversion()
 
     Label:
-        id: output_display
-        text: ''
+        id: ouput_display
+        text: app.display_text
+        multiline: False
