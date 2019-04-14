@@ -1,15 +1,22 @@
 BoxLayout:
     orientation: 'vertical'
-#    orientation: 'horizontal'
+    canvas:
+        Color:
+            rgba: 128, 128, 128, 0.2
+        Rectangle:
+            pos: self.pos
+            size: self.size
     BoxLayout:
         orientation: 'horizontal'
 
         Button:
             size_hint_x: 0.3
             text: 'Clear'
+            on_press: app.handle_clear()
         TextInput:
             id: input_name
             text: ''
+            on_text: app.handle_greet()
     BoxLayout:
         orientation: 'horizontal'
 
@@ -19,12 +26,7 @@ BoxLayout:
             on_press: app.handle_greet()
         Label:
                 # Draw spaces need canvas for area to be 'refreshed'
-            canvas:
-                Color:
-                    rgba: 128, 128, 128, 0.2
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+
 
             id: output_label
             text: 'Enter your name'
