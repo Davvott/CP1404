@@ -41,10 +41,11 @@ class TemperatureConverter(App):
 
     def validate_text_input(self):
         try:
-            fahrenheit = int(self.root.ids.text_input.text)
+            int(self.root.ids.text_input.text)
             return True
         except ValueError:
             pass
         return False
+
 
 TemperatureConverter().run()
