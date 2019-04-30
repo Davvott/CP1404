@@ -8,14 +8,15 @@ class ProgrammingLanguage:
     """
     def __init__(self, name, typing, reflection, year):
         self.name = name
-        self.typing = typing.lower()
+        self.typing = typing.lower() == "dynamic"
         self.reflection = reflection
         self.year = year
 
     def is_dynamic(self):
         """Return bool of self.typing"""
-        return self.typing == "dynamic"
+        return self.typing
 
     def __str__(self):
+        typed = "Dynamic" if self.is_dynamic() else "Static"
         return "{}, {} Typing, Reflection={}, First appeared in {}".format(
-            self.name, self.typing.title(), self.reflection, self.year)
+            self.name, typed, self.reflection, self.year)
