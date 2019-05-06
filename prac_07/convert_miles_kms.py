@@ -3,8 +3,9 @@ from kivy.lang import Builder
 from kivy.app import StringProperty
 
 CONVERSION_NUM = 1.60934
-class ConvertMilesKms(App):
 
+
+class ConvertMilesKms(App):
 
     output_text = StringProperty()
 
@@ -35,7 +36,7 @@ class ConvertMilesKms(App):
         try:
             int(self.root.ids.text_input.text)
             return True
-        except ValueError as err:
+        except ValueError:
             self.output_text = "0.0"
             pass
         return False

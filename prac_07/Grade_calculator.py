@@ -22,7 +22,6 @@ class GradeCalculator(App):
         except ValueError:
             self.root.ids.output_display.text = 'Enter an integer'
 
-
     def calculate_grade(self, score):
         if score >= 85:
             grade = 'High Distinction'
