@@ -7,6 +7,7 @@ MENU = """
 q)uit, c)hoose, d)rive"""
 MENU_OPTIONS = ("q", "c", "d")
 
+
 def main():
     """Main menu driven loop"""
     Taxi.price_per_km = 1.20
@@ -27,9 +28,8 @@ def main():
             current_taxi = choose_taxi(taxis)
             display_current_bill(bill_to_date)
 
-        # TODO: Fix bug in drive vs fare
         elif user_choice == "d":
-
+            current_taxi.start_fare()
             drive_taxi(current_taxi)
             trip_fare = calculate_trip(current_taxi)
             bill_to_date += trip_fare
@@ -87,6 +87,16 @@ def get_menu_choice():
         print(MENU)
         user_input = input(">>> ").lower()
     return user_input
+
+
+def get_user_string(prompt):
+    """Validate and return informal string input, can not be blank"""
+    while True:
+        user_input = input(prompt).strip()
+        if "".join(user_input.split()):
+            return user_input
+        else:
+            print("Input can not be blank")
 
 
 def get_positive_int(prompt):
