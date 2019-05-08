@@ -16,8 +16,9 @@ class SilverServiceTaxi(Taxi):
 
     def __str__(self):
         """Return Taxi and Car __str__ plus flagfall"""
-        return "{}, plus flagfall of ${}".format(super().__str__(), self.flagfall)
+        return "{}, plus flagfall of ${:.2f}".format(super().__str__(), self.flagfall)
 
     def get_fare(self):
         """Return price of fare with flagfall"""
+        # EXAMPLE OF DRY Principle; updates to Taxi class will affect all other children
         return self.flagfall + super().get_fare()
