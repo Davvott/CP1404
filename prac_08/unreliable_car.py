@@ -16,7 +16,7 @@ class UnreliableCar(Car):
         return "{}, reliability = {}".format(super().__str__(), self.reliability)
 
     def drive(self, distance):
-
+        """Override Car.drive with test on self.reliability"""
         if randrange(0, 100, 1) < self.reliability:
             distance_driven = super().drive(distance)
             return distance_driven

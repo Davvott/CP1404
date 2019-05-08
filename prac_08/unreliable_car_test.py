@@ -8,6 +8,13 @@ print(old_bomb)
 old_bomb.drive(40)
 print(old_bomb)
 
+rust_bucket = UnreliableCar("Rusty", 100, reliability=1)
+print(rust_bucket)
+rust_bucket.drive(34)
+print(rust_bucket)
+if rust_bucket.odometer == 0:
+    print("Rust bucket successfully unreliable\n")
+
 another_bomb = UnreliableCar("Test 2", 95)
 print(another_bomb)
 another_bomb.drive(34)
