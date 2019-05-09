@@ -29,6 +29,7 @@ class ConvertMilesKms(App):
         if self.handle_int_check():
             unit = int(self.root.ids.text_input.text)
             unit *= CONVERSION_NUM
+            # kv ids.display_text.text = app.output_text
             self.output_text = str(unit)
 
     def handle_int_check(self):
