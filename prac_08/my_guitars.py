@@ -6,11 +6,11 @@ FILE_NAME = "guitars.csv"
 
 def main():
     print("My guitars!")
-    continue_loop = False
 
     list_of_guitars = load_file()
     list_of_guitars = create_guitars(list_of_guitars)
     # Input loop set to False for testing
+    # continue_loop = False
     # User addition to guitars
     # while continue_loop:
     #     guitar_name = input("Please enter a Name: ")
@@ -22,6 +22,7 @@ def main():
     #
     #         guitars.append(Guitar(guitar_name, guitar_year, guitar_cost))
 
+    list_of_guitars.sort()
     # Print list
     if list_of_guitars:
         print("These are my guitars:")
@@ -46,6 +47,7 @@ def load_file():
 
 
 def create_guitars(guitars):
+    """Return list of Guitar objects"""
     class_list = []
     for i, guitar in enumerate(guitars):
         class_list.append(Guitar(guitar[0], int(guitar[1]), float(guitar[2])))

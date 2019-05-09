@@ -20,3 +20,8 @@ class Guitar:
     def is_vintage(self):
         age = self.get_age()
         return age > 50
+
+    def __lt__(self, other):
+        """Override < sort; Sort Guitars by year"""
+        # Returns bool on class attribute !
+        return self.year < other.year
