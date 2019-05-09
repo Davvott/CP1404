@@ -1,11 +1,13 @@
 BoxLayout:
     orientation: 'vertical'
+    # Kivy force refresh
     canvas:
         Color:
             rgba: (0, 0, 0, 0.2)
         Rectangle:
             pos: self.pos
             size: self.size
+    # End Kivy force refresh code
     BoxLayout:
         orientation: 'horizontal'
 
@@ -14,6 +16,7 @@ BoxLayout:
             text: '0'
             font_size: 40
             multiline: False
+            # Automatically validate and convert on_text
             on_text: app.handle_conversion()
 
         BoxLayout:
@@ -25,10 +28,16 @@ BoxLayout:
             Button:
                 text: 'Down'
                 on_press: app.handle_increment(-1)
+    BoxLayout:
+        orientation: 'horizontal'
 
-    Button:
-        text: 'Convert Fahrenheit to Celsius'
-        on_press: app.handle_conversion()
+        Button:
+            text: 'Convert Fahrenheit to Celsius'
+            on_press: app.handle_conversion()
+
+        Button:
+            text: 'Switch between units'
+            on_press: app.switch_units()
 
     Label:
         id: output_display
