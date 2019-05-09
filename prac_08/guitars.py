@@ -2,6 +2,7 @@ from datetime import datetime
 
 FILE_NAME = "guitars.csv"
 
+
 class Guitar:
 
     def __init__(self, name='', year=0, cost=0.00):
@@ -19,4 +20,3 @@ class Guitar:
     def is_vintage(self):
         age = self.get_age()
         return age > 50
-
