@@ -9,19 +9,27 @@ def main():
 
     list_of_guitars = load_file()
     list_of_guitars = create_guitars(list_of_guitars)
-    # Input loop set to False for testing
-    # continue_loop = False
-    # User addition to guitars
-    # while continue_loop:
-    #     guitar_name = input("Please enter a Name: ")
-    #     if guitar_name.strip() == "":
-    #         continue_loop = False
-    #     else:
-    #         guitar_year = int(input("Please enter the Year: "))
-    #         guitar_cost = float(input("Please enter the Cost: "))
-    #
-    #         guitars.append(Guitar(guitar_name, guitar_year, guitar_cost))
+    display_guitars(list_of_guitars)
 
+    continue_loop = True
+    # User addition to guitars
+    while continue_loop:
+        print("\nTo add a guitar, follow the prompts")
+        guitar_name = input("Please enter a Name: ")
+        if guitar_name.strip() == "":
+            continue_loop = False
+        else:
+            guitar_year = int(input("Please enter the Year: "))
+            guitar_cost = float(input("Please enter the Cost: "))
+
+            list_of_guitars.append(Guitar(guitar_name, guitar_year, guitar_cost))
+        display_guitars(list_of_guitars)
+    display_guitars(list_of_guitars)
+
+    save_file(list_of_guitars)
+
+
+def display_guitars(list_of_guitars):
     list_of_guitars.sort()
     # Print list
     if list_of_guitars:
@@ -32,6 +40,16 @@ def main():
 
             print("Guitar {}: {:>20} ({}), worth ${:10,.2f} {}".format(
                 i, guitar.name, guitar.year, guitar.cost, vintage))
+
+
+def save_file(guitars):
+    file_out = open(FILE_NAME, "w")
+    for guitar in guitars:
+        line = ",".join([guitar.name, str(guitar.year), str(guitar.cost)])
+        file_out.write(line + "\n")
+        # Auto add "\n" ?
+        # print(line, file=file_out)
+    file_out.close()
 
 
 def load_file():
