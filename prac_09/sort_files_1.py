@@ -35,6 +35,7 @@ def move_files_to_ext_dirs(directory_name, filenames):
 
         try:
             shutil.move(name, destination)
+            print(name, " moved to ", destination)
         except FileNotFoundError as error:
             print(error)
 
