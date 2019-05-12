@@ -27,7 +27,7 @@ def main():
         if os.path.isdir(filename):
             continue
 
-        new_name = get_fixed_filename(filename)
+        new_name = fix_filename(filename)
         print("Renaming {} to {}".format(filename, new_name))
 
         # Option 1: rename file to new name - in place
@@ -37,43 +37,33 @@ def main():
         # shutil.move(filename, 'temp/' + new_name)
 
 
-def get_fixed_filename(filename):
+def fix_filename(filename):
     """Return a 'fixed' version of filename."""
-    file_name, ext = filename.split(".")
-    print(file_name, ext)
-    file_name = file_name.replace(" ", "_")
+    try:
+        file_name, ext = filename.split(".")
+    except ValueError as err:
+        print(err)
+        ext = "TXT"
+        file_name = filename
 
-    # file_name = "".join([name.title() for name in file_name.split("_")])
-    print(file_name)
+    file_name = file_name.replace(" ", "_")
 
     previous_char = "A"
     fixed_filename = ""
     for i, char in enumerate(file_name):
-        # lower followed by upper
+        # ItIs --> It_Is
         if char.isupper() and previous_char.islower():
             fixed_filename += "_" + char
-        # prev not alpha char
-        elif not previous_char.isalpha():
-            char.capitalize()
+        # ILove --> I_Love
+        elif i != 0 and previous_char.isupper() and char.isupper():
+            fixed_filename += "_" + char
+
         else:
             fixed_filename += char
         previous_char = char
-    fixed_filename += ext.replace("TXT", ".txt")
-    # #
-    # underscore_indices = []
-    # for i, char in enumerate(file_name):
-    #     if char.islower():
-    #         try:
-    #             next_char = file_name[i+1]
-    #             if next_char.isupper():  # requires underscore @ i+1
-    #                 underscore_indices.append(i+1)
-    #         except IndexError:
-    #             pass
-    # # add "_" at indices
-    # result = list(file_name)
-    # for i in underscore_indices:
-    #     result[i] = "_{}".format(result[i])
-    # new_name = "".join(result)
+
+    fixed_filename = "_".join([name.title() for name in fixed_filename.split("_")])
+    fixed_filename += "." + ext.replace("TXT", "txt")
 
     return fixed_filename
 
@@ -90,7 +80,7 @@ def demo_walk():
         # Fix filenames in each directory
         for name in filenames:
             # generate new_name
-            new_name = get_fixed_filename(name)
+            new_name = fix_filename(name)
             # join pathnames for rename
             old_pathname = os.path.join(directory_name, name)
             new_pathname = os.path.join(directory_name, new_name)
@@ -99,10 +89,5 @@ def demo_walk():
             os.rename(old_pathname, new_pathname)
 
 # main()
-# demo_walk()
-
-
-test = "SilentNightTonight.TXT"
-t = get_fixed_filename(test)
-print(t)
-
+if __name__ == "__main__":
+    demo_walk()
