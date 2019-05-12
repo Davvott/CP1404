@@ -39,26 +39,43 @@ def main():
 
 def get_fixed_filename(filename):
     """Return a 'fixed' version of filename."""
+    file_name, ext = filename.split(".")
+    print(file_name, ext)
+    file_name = file_name.replace(" ", "_")
 
-    # _ on Capitals for CamelCase
-    underscore_indices = []
-    file_name = filename.replace(".TXT", ".txt")
+    # file_name = "".join([name.title() for name in file_name.split("_")])
+    print(file_name)
+
+    previous_char = "A"
+    fixed_filename = ""
     for i, char in enumerate(file_name):
-        if char.islower():
-            try:
-                next_char = file_name[i+1]
-                if next_char.isupper():  # requires underscore @ i+1
-                    underscore_indices.append(i+1)
-            except IndexError:
-                pass
+        # lower followed by upper
+        if char.isupper() and previous_char.islower():
+            fixed_filename += "_" + char
+        # prev not alpha char
+        elif not previous_char.isalpha():
+            char.capitalize()
+        else:
+            fixed_filename += char
+        previous_char = char
+    fixed_filename += ext.replace("TXT", ".txt")
+    # #
+    # underscore_indices = []
+    # for i, char in enumerate(file_name):
+    #     if char.islower():
+    #         try:
+    #             next_char = file_name[i+1]
+    #             if next_char.isupper():  # requires underscore @ i+1
+    #                 underscore_indices.append(i+1)
+    #         except IndexError:
+    #             pass
+    # # add "_" at indices
+    # result = list(file_name)
+    # for i in underscore_indices:
+    #     result[i] = "_{}".format(result[i])
+    # new_name = "".join(result)
 
-    # add "_" at indices
-    result = list(file_name)
-    for i in underscore_indices:
-        result[i] = "_{}".format(result[i])
-
-    new_name = "".join(result)
-    return new_name
+    return fixed_filename
 
 
 def demo_walk():
@@ -84,6 +101,8 @@ def demo_walk():
 # main()
 # demo_walk()
 
+
 test = "SilentNightTonight.TXT"
 t = get_fixed_filename(test)
 print(t)
+
