@@ -2,7 +2,8 @@
 
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.properties import StringProperty
 
 canvas = "canvas:" \
          "  Color:" \
@@ -14,6 +15,8 @@ canvas = "canvas:" \
 
 class DynamicListApp(App):
     """Main program - Kivy app to demo dynamic widget creation."""
+
+    status_msg = StringProperty()
 
     def __init__(self, **kwargs):
         """Construct main app."""
@@ -34,12 +37,16 @@ class DynamicListApp(App):
 
         for string in self.strings:
             # Create a label and add_widget to id:list_box
-            temp_label = Label(text=string)
+            temp_label = Button(text=string)
             # temp_label.bind(on_release=self.press_entry)
             self.root.ids.list_box.add_widget(temp_label)
+            temp_label.bind(on_release=self.update_status)
 
     def clear_all(self):
         self.root.ids.list_box.clear_widgets()
+
+    def update_status(self, instance):
+        self.status_msg = "Success"
 
     def add_widget(self):
         self.strings.append(self.root.ids.text_input.text)
