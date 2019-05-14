@@ -38,7 +38,8 @@ class DynamicListApp(App):
         for string in self.strings:
             # Create a label and add_widget to id:list_box
             temp_label = Button(text=string)
-            # temp_label.bind(on_release=self.press_entry)
+
+
             self.root.ids.list_box.add_widget(temp_label)
             temp_label.bind(on_release=self.update_status)
 
@@ -46,12 +47,14 @@ class DynamicListApp(App):
         self.root.ids.list_box.clear_widgets()
 
     def update_status(self, instance):
-        self.status_msg = "Success"
+        self.status_msg = instance.text
 
     def add_widget(self):
-        self.strings.append(self.root.ids.text_input.text)
-        self.root.ids.text_input.text = ""
-        self.create_widgets()
-        pass
+        if self.root.ids.text_input.text:
+
+            self.strings.append(self.root.ids.text_input.text)
+            self.create_widgets()
+            self.root.ids.text_input.text = ""
+
 
 DynamicListApp().run()
