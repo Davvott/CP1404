@@ -1,11 +1,11 @@
 """CP1404 Prac
-Walk given dir and Create dirs from file extensions in root;
- Move files into respective dirs"""
+Extend sort_files_1 to prompt for user categorising.
+Assumes list of files. Not tree of subdirs"""
 
 import os
 import shutil
 
-ROOT = r'.\FilesToSort'
+ROOT = ".\FilesToSort"
 
 
 def main():
@@ -21,12 +21,29 @@ def main():
         print("\tand files:", filenames)
         print("(Current working directory is: {})".format(os.getcwd()))
 
-        # Not efficient. is called in every subdirectory.
-        create_file_ext_directories(root, extensions, filenames)
-        # Tries to move files to non-existent dir
-        move_files_to_ext_dirs(root, dirname, filenames)
+        # Check file extensions pass to list
+        extensions = create_list_file(filenames)
+        # Iterate through list and Prompt user for strings
+        for ext in extensions:
+            category = input("What category would you like to sort {} files into? ").format(ext)
+            try:
+                os.mkdir(os.path.join(root, category))
+            except FileExistsError as error:
+                print(error)
+                # TODO: move files
+            # for each ext, move file with ext in filename into category dir
+            # move_files_to_dirs(root, dirname, filenames)
 
     print(extensions)
+
+
+def create_list_file(filenames):
+    extensions = []
+    for name in filenames:
+        filename, ext = name.split('.')
+        if ext not in extensions:
+            extensions.append(ext)
+    return extensions
 
 
 def move_files_to_ext_dirs(root, dirname, filenames):
@@ -48,19 +65,6 @@ def move_files_to_ext_dirs(root, dirname, filenames):
         except shutil.Error as error:  # package Error
             # File exists - will not duplicate
             print(error)
-
-
-def create_file_ext_directories(root, extensions, filenames):
-    """From os.walk() create dirs from set of extensions in dir"""
-    for name in filenames:
-        filename, ext = name.split('.')
-
-        if ext not in extensions:
-            extensions.append(ext)
-            try:
-                os.mkdir(os.path.join(root, ext))
-            except FileExistsError:
-                pass
 
 
 if __name__ == "__main__":
