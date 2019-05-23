@@ -37,16 +37,36 @@ def main():
     # Iterate through extensions and Prompt user for strings
     for ext in extensions:
         category = get_user_input(ext)
+        category_path = os.path.join(root, category)
         try:
             # make dir in root
-            os.mkdir(os.path.join(root, category))
+            os.mkdir(category_path)
         except FileExistsError as error:
-            print(error)
-            # TODO: Does not delete existing folders in root
+            print(error, "mkdir error")
+            # Does not delete existing folders in root
         # for each ext, move file with ext in filename into category dir
-        move_files_to_dirs(root, ext, file_path_list)
+        move_files_to_dirs(root, ext, category_path, file_path_list)
 
     print(extensions)
+
+
+def move_files_to_dirs(root, ext, destination, filenames):
+    """Given a file with ext, move file to root\\ext"""
+    for file in filenames:
+        print(file)
+        if os.path.splitext(file)[1] == ext:
+            # shutil.move requires full path names
+            # Destination in root\category dir
+
+            print(destination)
+            try:
+                shutil.move(file, destination)
+                print(file, " moved to ", destination)
+            except FileNotFoundError as error:
+                print(error, "move files error")
+            except shutil.Error as error:  # package Error
+                # File exists - will not duplicate
+                print(error)
 
 
 def create_list_file(filenames):
@@ -56,6 +76,7 @@ def create_list_file(filenames):
         _, ext = os.path.splitext(name)
         if ext not in extensions:
             extensions.append(ext)
+    print(extensions)
     return extensions
 
 
@@ -65,24 +86,6 @@ def get_user_input(ext):
         print("Please enter a directory name of at least one digit")
         category = input("What category would you like to sort {} files into? ".format(ext))
     return category
-
-
-def move_files_to_dirs(root, ext, filenames):
-    """Given a file with ext, move file to root\ext"""
-    for file in filenames:
-        if os.path.splitext(file)[1] == ext:
-        # shutil.move requires full path names
-        # Destination in root\ext dir
-            destination = os.path.join(root, ext)
-
-            try:
-                shutil.move(file, destination)
-                print(file, " moved to ", destination)
-            except FileNotFoundError as error:
-                print(error)
-            except shutil.Error as error:  # package Error
-                # File exists - will not duplicate
-                print(error)
 
 
 if __name__ == "__main__":
