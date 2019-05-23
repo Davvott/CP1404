@@ -19,7 +19,7 @@ import os
 
 ROOT = ".\\Lyrics"
 SEARCH_TERM = ".i "
-t = ".i ©"
+FULL_SEARCH_TERM = ".i ©"
 
 
 def main():
@@ -39,14 +39,10 @@ def main():
         for file in filenames:
             pathname = os.path.join(dirname, file)
             with open(pathname) as f:
-                # TODO: unicode error
                 line = f.read()
-            try:
-                if SEARCH_TERM not in line:
-                    files_missing.append(pathname)
-            # exception?
-            except UnicodeError:
-                pass
+            if FULL_SEARCH_TERM not in line:
+                files_missing.append(pathname)
+
     print("\nFiles missing: \n", files_missing)
 
 
