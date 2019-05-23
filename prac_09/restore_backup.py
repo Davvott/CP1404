@@ -7,6 +7,7 @@ DIRECTORY = ".\FilesToSort"
 BACKUP = ".\FilesToSort_backup"
 
 
+
 def main():
     """Main program to 'erase' dir, and copy backup to dir"""
     shutil.rmtree(DIRECTORY)
@@ -25,8 +26,21 @@ def copy_files_to_dir(files):
 
         print(file, " moved to ", DIRECTORY)
 
+# # Lecture
+# def longest_line(filename):
+#     openfile = open(filename, "r")
+#     lines = openfile.readlines()
+#     openfile.close()
+#     longest = 0
+#     linenum = -1
+#     for i, line in enumerate(lines):
+#         if len(line) > longest:
+#             longest = len(line)
+#             linenum = i
+#     return linenum, longest
 
 if __name__ == "__main__":
     print(os.getcwd())
     main()
-
+    # a = longest_line(".\\Lyrics\\Old\\With_Us.txt")
+    # print(a)
