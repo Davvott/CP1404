@@ -26,8 +26,8 @@ def main():
         print("(Current working directory is: {})".format(os.getcwd()))
 
         # Check file extensions pass to list
-        extensions = create_list_file(filenames)
-
+        extensions.extend(create_list_file(filenames))
+        print(extensions)
         # create a list of dirname/filename for filename in filenames
         for file_name in filenames:
             file_path_list.append(str(os.path.join(dirname, file_name)))
