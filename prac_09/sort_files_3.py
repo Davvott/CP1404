@@ -8,25 +8,24 @@ Write a program that reports the names and directories of all of the files that 
 
 --- Version 2 ---
 
-Automatically look up the copyright information from the Internet based on the song title and author, then add the data to the file...
+Automatically look up the copyright information from the Internet based on the song title and author,
+then add the data to the file...
 Good luck with that ;)
 Assumes list of files. Not tree of subdirs
 This program is designed for multiple directory tree structures.
 """
 
 import os
-import shutil
 
-ROOT = ".\Lyrics"
+ROOT = ".\\Lyrics"
 SEARCH_TERM = ".i "
 t = ".i ©"
 
+
 def main():
-    """Find all file extensions, prompt for new dirs, move files"""
-    extensions = []
+    """Find all file with search term"""
 
     os.chdir(ROOT)
-    root = "."
     files_missing = []
 
     # Walk entire tree without changing cwd
@@ -46,33 +45,9 @@ def main():
                 if SEARCH_TERM not in line:
                     files_missing.append(pathname)
             # exception?
-            except:
+            except UnicodeError:
                 pass
     print("\nFiles missing: \n", files_missing)
-
-
-        # open file
-        # readline()
-        # check for string in line
-        # if not: report dir and file name
-
-
-def create_list_file(filenames):
-    """Return list of extensions from list of filenames"""
-    extensions = []
-    for name in filenames:
-        _, ext = os.path.splitext(name)
-        if ext not in extensions:
-            extensions.append(ext)
-    return extensions
-
-
-def get_user_input(ext):
-    category = input("What category would you like to sort {} files into? ".format(ext))
-    while not category.isalnum():
-        print("Please enter a directory name of at least one digit")
-        category = input("What category would you like to sort {} files into? ".format(ext))
-    return category
 
 
 if __name__ == "__main__":
