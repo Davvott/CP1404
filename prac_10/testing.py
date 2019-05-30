@@ -45,16 +45,29 @@ def run_tests():
     assert test_car.odometer == 0, "Car does not set odometer correctly"
 
     # 2. write assert statements to show if Car sets the fuel correctly
-    # Note that Car's __init__ function sets the fuel in one of two ways:
-    # using the value passed in or the default
-    # You should test both of these
+
+    # Test keyword param
     test_car = Car(fuel=10)
     assert test_car.fuel == 10
+
+    # Test default param
     test_car = Car("car")
     assert test_car.fuel == 0
 
 
+def format_phrase_as_sentence(phrase):
+    """Return phrase as sentence with staring capital and ending fullstop
+    >>> format_phrase_as_sentence("hello")
+    'Hello.'
+    >>> format_phrase_as_sentence("It is an ex parrot.")
+    'It is an ex parrot.'
+    """
 
+    string = phrase.split()
+    string[0] = string[0].title()
+    if "." not in string[-1]:
+        string[-1] = string[-1] + "."
+    return " ".join(string)
 
 run_tests()
 
@@ -65,7 +78,7 @@ doctest.testmod()
 # 4. Fix the failing is_long_word function
 # (don't change the tests, change the function!)
 
-# TODO: 5. Write and test a function to format a phrase as a sentence,
+# 5. Write and test a function to format a phrase as a sentence,
 # starting with a capital and ending with a single full stop.
 # Important: start with a function header and just use pass as the body
 # then add doctests for 3 tests:
